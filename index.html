@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Personal Dashboard</title>
+
+    <!-- FOUC-prevention: read stored theme and apply before first paint -->
+    <script>
+      (function () {
+        var t = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', t);
+      })();
+    </script>
+
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <!-- ===================== HEADER ===================== -->
+    <header class="site-header">
+      <div class="header-inner">
+        <span class="site-title">My Dashboard</span>
+        <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle light/dark theme" title="Toggle theme">
+          <span class="theme-toggle-icon">🌙</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- ===================== MAIN ===================== -->
+    <main class="site-main">
+
+      <!-- Greeting Widget – full-width hero -->
+      <section id="greeting-widget" class="widget greeting-widget" aria-label="Greeting">
+        <div class="greeting-time-date">
+          <p id="greeting-time" class="greeting-time">--:--</p>
+          <p id="greeting-date" class="greeting-date">Loading date…</p>
+        </div>
+        <h1 id="greeting-text" class="greeting-text">Good Morning</h1>
+        <form id="greeting-name-form" class="greeting-name-form" aria-label="Set your name">
+          <input
+            type="text"
+            id="greeting-name-input"
+            class="greeting-name-input"
+            placeholder="Enter your name…"
+            maxlength="50"
+            aria-label="Your name"
+          />
+          <button type="submit" class="btn btn-accent">Save Name</button>
+        </form>
+      </section>
+
+      <!-- 3-column widget grid -->
+      <div class="widget-grid">
+
+        <!-- Focus Timer Widget -->
+        <section id="timer-widget" class="widget timer-widget" aria-label="Focus Timer">
+          <h2 class="widget-title">⏱ Focus Timer</h2>
+          <div class="timer-display-wrapper">
+            <p id="timer-display" class="timer-display" aria-live="polite" aria-atomic="true">25:00</p>
+          </div>
+          <div class="timer-duration-row">
+            <label for="timer-duration-input" class="timer-duration-label">Duration (min):</label>
+            <input
+              type="number"
+              id="timer-duration-input"
+              class="timer-duration-input"
+              value="25"
+              min="1"
+              max="120"
+              aria-label="Session duration in minutes"
+            />
+          </div>
+          <p id="timer-validation-msg" class="validation-msg" role="alert" aria-live="polite"></p>
+          <div class="timer-controls">
+            <button id="timer-start-btn" class="btn btn-accent">Start</button>
+            <button id="timer-stop-btn" class="btn btn-secondary">Stop</button>
+            <button id="timer-reset-btn" class="btn btn-secondary">Reset</button>
+          </div>
+        </section>
+
+        <!-- To-Do List Widget -->
+        <section id="todo-widget" class="widget todo-widget" aria-label="To-Do List">
+          <h2 class="widget-title">✅ Tasks</h2>
+          <form id="todo-form" class="todo-form" aria-label="Add a new task">
+            <input
+              type="text"
+              id="todo-input"
+              class="todo-input"
+              placeholder="Add a new task…"
+              maxlength="200"
+              aria-label="New task text"
+            />
+            <button type="submit" class="btn btn-accent">Add</button>
+          </form>
+          <p id="todo-validation-msg" class="validation-msg" role="alert" aria-live="polite"></p>
+          <ul id="todo-list" class="todo-list" aria-label="Task list" aria-live="polite">
+            <!-- Tasks rendered by js/app.js -->
+          </ul>
+        </section>
+
+        <!-- Quick Links Widget -->
+        <section id="links-widget" class="widget links-widget" aria-label="Quick Links">
+          <h2 class="widget-title">🔗 Quick Links</h2>
+          <form id="links-form" class="links-form" aria-label="Add a new quick link">
+            <input
+              type="text"
+              id="links-label-input"
+              class="links-label-input"
+              placeholder="Label (e.g. GitHub)"
+              maxlength="50"
+              aria-label="Link label"
+            />
+            <input
+              type="text"
+              id="links-url-input"
+              class="links-url-input"
+              placeholder="URL (e.g. github.com)"
+              maxlength="500"
+              aria-label="Link URL"
+            />
+            <button type="submit" class="btn btn-accent">Add</button>
+          </form>
+          <p id="links-validation-msg" class="validation-msg" role="alert" aria-live="polite"></p>
+          <div id="links-list" class="links-list" aria-label="Quick links list" aria-live="polite">
+            <!-- Links rendered by js/app.js -->
+          </div>
+        </section>
+
+      </div><!-- /.widget-grid -->
+    </main>
+
+    <script defer src="js/app.js"></script>
+  </body>
+</html>
